@@ -39,9 +39,9 @@ app.get('/status', async (req, res) => {
 // connection will be terminated.
 //
     var thingShadows = awsIot.thingShadow({
-        keyPath: path.resolve(__dirname, './private.pem.key'),
-        certPath: path.resolve(__dirname, './certificate.pem.crt'),
-        caPath: path.resolve(__dirname, './root-CA.crt'),
+        keyPath: path.resolve(__dirname, './cert/private.pem.key'),
+        certPath: path.resolve(__dirname, './cert/certificate.pem.crt'),
+        caPath: path.resolve(__dirname, './cert/root-CA.crt'),
         clientId: 'kitiot',
         host: 'a28g4okfvsmwt-ats.iot.us-east-1.amazonaws.com',
         region: 'us-east-1',
