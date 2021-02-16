@@ -1,0 +1,37 @@
+{
+  "name": "kitiot-api",
+  "description": "Kit IOT api",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./spec --require babel-core/register",
+    "deploy": "serverless deploy",
+    "logs": "serverless logs -f parser -t"
+  },
+  "author": "Luiz Couto <luiz@couto.co>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "aws-iot-device-sdk": "^2.2.6",
+    "axios": "^0.18.0",
+    "babel-runtime": "^6.26.0",
+    "lambda-api": "^0.10.5",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.451.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-source-map-support": "^1.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "serverless-domain-manager": "^5.1.0",
+    "serverless-offline": "^3.25.6",
+    "serverless-stage-manager": "^1.0.5",
+    "serverless-webpack": "^5.1.0",
+    "webpack": "^4.16.2",
+    "webpack-node-externals": "^1.6.0"
+  }
+}

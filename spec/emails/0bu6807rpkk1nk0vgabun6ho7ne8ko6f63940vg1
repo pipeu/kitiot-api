@@ -1,0 +1,157 @@
+Return-Path: <j.martinscoutinho@hotmail.com>
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com (mail-oln040092002060.outbound.protection.outlook.com [40.92.2.60])
+ by inbound-smtp.us-east-1.amazonaws.com with SMTP id 0bu6807rpkk1nk0vgabun6ho7ne8ko6f63940vg1
+ for netcartas@kontato.co;
+ Sun, 28 Apr 2019 19:21:14 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of hotmail.com designates 40.92.2.60 as permitted sender) client-ip=40.92.2.60; envelope-from=j.martinscoutinho@hotmail.com; helo=mail-oln040092002060.outbound.protection.outlook.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of hotmail.com designates 40.92.2.60 as permitted sender) client-ip=40.92.2.60; envelope-from=j.martinscoutinho@hotmail.com; helo=mail-oln040092002060.outbound.protection.outlook.com;
+ dkim=pass header.i=@hotmail.com;
+ dmarc=pass header.from=hotmail.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFHYytiRFhhZmxJWTdDeitFMSszZ205L3RuN295L25wMzNhTUlzN0lscXVXczRKZlovYTBQc1M5b3BWZncvU290Z2N3S1pYa1p6bWM4N1R5ZVlxbHpRTk9VTklBTzgyWE1sVzdtMjhpR0hTZlQ2U0ViMnZWWEdKdkJiNEM0OXRBSExMNTV4MnFTSG92bDVWTU5MMGoyWEVucy92YVAxNXZLTU5naXkwS3gzYmZZZWpNVDVBeWI3RDErQmNvUllZanBPM3c5ZFQyR1U5Mkhiazduc04xT2hReUNNcDhtS1BkVnhQSTNUU2RjUkRDd2xGb0VXcEUwb1dvNzZON1hmQm5mY0h4bFM0RFUvRnMxdGJYaFMyc2J0S1QrV2NXVFhaeFI3U2JybVM4dXBBRlE9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=J9Xlt3eLwqrNCtcupWqzv/E5PQR9PQJ8I3XvR0cwsl1mGVw77bVDvmag+/y0qbChG6o8H/e6sCXsBTLBp80zDumMUv+HUQOWOhKOaTkBmeWFprQvUhJx68lQmbFMC+xeBaC/XPyBEtmc987eODuchmPIPhUc8r+YKI4INds/cg0=; c=relaxed/simple; s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1556479275; v=1; bh=PIC2YjNbLjDb8RjeeOKS31BOs7bKkTbJt8B9N0QraLM=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1iixTgrnLZbH+QJIYXEZrjpPebq8zIB6PpT97aPMWtk=;
+ b=qX5beeQLpTe/SVF5CnJeTeW3364wItKwLE3robBAnTu4PvbCKj51qVr1mnTqQjaLQbZ1KkyU9rLEtYR9iU1IFFnrfZ2Ahunru+mXW4Rivxi8WwhDRuJVH1JFYxJjxG7V0FIjVK2CthjShLenvS2Gwbb5u+5iKv3hWubMDb9TJFr0lx31aCKJU8QIxWtqcMeNHXFG2Dk7lNc9/cfGtj/iXRs4Ks8sb6LL7OLbM5IS3rbjOlf88Q9tJUVqqWC/gdaMyyHpvfAaNd6kH+SQwmEQGxE+iwEZ959F8s3bil4h2FoAMoRPmU8ORgreDGtjMsLMHcJUwVLUvWVzuDsWKNzGuw==
+Received: from BN3NAM01FT010.eop-nam01.prod.protection.outlook.com
+ (10.152.66.54) by BN3NAM01HT180.eop-nam01.prod.protection.outlook.com
+ (10.152.67.2) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1835.13; Sun, 28 Apr
+ 2019 19:21:13 +0000
+Received: from CP2PR80MB0385.lamprd80.prod.outlook.com (10.152.66.60) by
+ BN3NAM01FT010.mail.protection.outlook.com (10.152.66.245) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.1835.13 via Frontend Transport; Sun, 28 Apr 2019 19:21:13 +0000
+Received: from CP2PR80MB0385.lamprd80.prod.outlook.com
+ ([fe80::9cc8:dcd6:ae5f:c4ec]) by CP2PR80MB0385.lamprd80.prod.outlook.com
+ ([fe80::9cc8:dcd6:ae5f:c4ec%10]) with mapi id 15.20.1835.018; Sun, 28 Apr
+ 2019 19:21:12 +0000
+From: "J. Martins Coutinho" <j.martinscoutinho@hotmail.com>
+To: "netcartas@kontato.co" <netcartas@kontato.co>
+Subject: RE: RE: RE: Abandonos
+Thread-Topic: RE: RE: Abandonos
+Thread-Index: AQHU+60XlpLqg0Nm5U2aE5DoS9mUOqZR91Z7gAAAVOo=
+Date: Sun, 28 Apr 2019 19:21:12 +0000
+Message-ID: <CP2PR80MB0385ACF0C21686607FA78CC9F8380@CP2PR80MB0385.lamprd80.prod.outlook.com>
+References: <0100016a566183c5-3ed91c3f-28a0-414e-96fc-120a368cdc4c-000000@email.amazonses.com>,<CP2PR80MB0385DA8B688FC6319B5AC8DCF8380@CP2PR80MB0385.lamprd80.prod.outlook.com>
+In-Reply-To: <CP2PR80MB0385DA8B688FC6319B5AC8DCF8380@CP2PR80MB0385.lamprd80.prod.outlook.com>
+Accept-Language: pt-BR, en-US
+Content-Language: pt-BR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-incomingtopheadermarker: OriginalChecksum:98FAEBB2C085ECE284B490E133D60A03AFC86181E9F2E8051953DE6813F0A47C;UpperCasedChecksum:C3817411173CF9368795C0F165FEAAE0562772290BE99044C63420B0CF399924;SizeAsReceived:6841;Count:43
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [E0mTjxduype49SqT4lD0TCXEuqYPI8Ks]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 43
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);SRVR:BN3NAM01HT180;
+x-ms-traffictypediagnostic: BN3NAM01HT180:
+x-microsoft-antispam-message-info: k6/bUnXEnZdfGf7im9gSaR4xjJkG7ULsrm1xXM2or7OVH0xidhctMLHT3FP1D9X3T6UmFlny7az4gjMqd5WGYbQl5P1ucd3jwpWM1RCrdBq0n/F4iKMxt4RSarUkZYdxY8vV4UqZKKB9iaE2BZqLlR77DmCz8VoKP7RMSt5pJrGiH5PCgJ3YhfmbjttYEJPA
+Content-Type: multipart/alternative;
+	boundary="_000_CP2PR80MB0385ACF0C21686607FA78CC9F8380CP2PR80MB0385lamp_"
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ebc83b1-981b-4b86-4915-08d6cc0ead4e
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2019 19:21:12.7119
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3NAM01HT180
+
+--_000_CP2PR80MB0385ACF0C21686607FA78CC9F8380CP2PR80MB0385lamp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Podem apagar meus abandonos???
+rengue
+________________________________
+De: J. Martins Coutinho <j.martinscoutinho@hotmail.com>
+Enviado: domingo, 28 de abril de 2019 19:20
+Para: netcartas@kontato.co
+Assunto: RE: RE: RE: Abandonos
+
+Podem apagar meus abandonos???
+________________________________
+De: netcartas@kontato.co <netcartas@kontato.co>
+Enviado: quinta-feira, 25 de abril de 2019 21:23
+Para: j.martinscoutinho@hotmail.com
+Cc: j.martinscoutinho@hotmail.com
+Assunto: Re: RE: RE: Abandonos
+
+Por nada
+
+--_000_CP2PR80MB0385ACF0C21686607FA78CC9F8380CP2PR80MB0385lamp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(50, 49, 48); font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12px; background-color: rgb(237, 235, 233); display: in=
+line !important">Podem apagar meus abandonos???</span><br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(50, 49, 48); font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12px; background-color: rgb(237, 235, 233); display: in=
+line !important">rengue</span></div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>De:</b> J. Martins Coutinho &lt=
+;j.martinscoutinho@hotmail.com&gt;<br>
+<b>Enviado:</b> domingo, 28 de abril de 2019 19:20<br>
+<b>Para:</b> netcartas@kontato.co<br>
+<b>Assunto:</b> RE: RE: RE: Abandonos</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<span style=3D"color:rgb(50,49,48); font-size:12px; background-color:rgb(23=
+7,235,233); display:inline!important">Podem apagar meus abandonos???</span>=
+<br>
+</div>
+<div id=3D"x_appendonsend"></div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>De:</b> netcartas@kontato.co =
+&lt;netcartas@kontato.co&gt;<br>
+<b>Enviado:</b> quinta-feira, 25 de abril de 2019 21:23<br>
+<b>Para:</b> j.martinscoutinho@hotmail.com<br>
+<b>Cc:</b> j.martinscoutinho@hotmail.com<br>
+<b>Assunto:</b> Re: RE: RE: Abandonos</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11p=
+t">
+<div class=3D"x_PlainText">Por nada<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_CP2PR80MB0385ACF0C21686607FA78CC9F8380CP2PR80MB0385lamp_--

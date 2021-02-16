@@ -1,0 +1,10 @@
+# dev
+sls deploy
+
+# prod
+sls deploy --stage prod --region us-east-1
+
+# prod
+sls logs -f service -t
+
+sls logs -f service -t --stage prod --region us-east-1

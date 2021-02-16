@@ -1,0 +1,84 @@
+service: kitiot-api
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage,'dev'}
+  region: ${opt:region,'us-west-2'}
+  timeout: 60 # The default is 6 seconds. Note: API Gateway current maximum is 30 seconds
+
+  environment:
+    stage: ${self:custom.stage}
+    BUCKET_NAME: kontato-messages
+    API_TOKEN_HEADER: PIPEU_API_GATEWAY_MICROSERVICES_TOKEN
+    API_URL: ${self:custom.api.url.${self:custom.stage}}
+    API_TOKEN: ${self:custom.api.token.${self:custom.stage}}
+
+    GRAPHQL_URL: https://ir6jsbtuizbsjeajpq3d7gvzzq.appsync-api.us-east-1.amazonaws.com/graphql
+    GRAPHQL_TOKEN: da2-yxwynlnz25bkxcf5oeeijnqdc4
+
+  iamRoleStatements:
+    - Effect: "Allow" # xray permissions (required)
+      Action:
+        - "iot:Publish"
+        - "iot:Receive"
+      Resource:
+        - "*"
+
+    - Effect: "Allow" # xray permissions (required)
+      Action:
+        - "iot:Subscribe"
+      Resource:
+        - "*"
+
+    - Effect: "Allow" # xray permissions (required)
+      Action:
+        - "iot:Connect"
+      Resource:
+        - "*"
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-stage-manager
+
+custom:
+  region: ${opt:region, 'us-west-2'}
+  stage: ${opt:stage, self:provider.stage}
+  stages: # for stage manager
+    - dev
+    - prod
+
+  api:
+    url:
+      dev: http://localhost:8888/rest/api
+      prod: https://pipeu.com.br/rest/api
+    token:
+      dev: STAGING_TOKEN
+      prod: pipeu-api777e34ea-33c9-4148-9dc4-c65787ca6d08
+
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    excludeFiles: "**/*.spec.js"
+
+  serverless-offline:
+    httpPort: 4000
+
+package:
+  exclude:
+    - .git/**
+    - spec/**
+    - terraform/**
+    - .serverless/**
+
+functions:
+  service:
+    handler: handler.router
+    #    timeout: 15
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
+          cors: true
+
