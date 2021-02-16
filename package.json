@@ -15,7 +15,8 @@
     "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
     "lambda-api": "^0.10.5",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "aws-sdk": "^2.451.0",
