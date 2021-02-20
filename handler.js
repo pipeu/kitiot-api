@@ -32,94 +32,31 @@ const generateResult = (status, result) => {
 app.get('/status', async (req, res) => {
 
 
-// Replace the values of '<YourUniqueClientIdentifier>' and '<YourCustomEndpoint>'
-// with a unique client identifier and custom host endpoint provided in AWS IoT cloud
-// NOTE: client identifiers must be unique within your AWS account; if a client attempts
-// to connect with a client identifier which is already in use, the existing
-// connection will be terminated.
-//
-    var thingShadows = awsIot.thingShadow({
-        keyPath: path.resolve(__dirname, './cert/private.pem.key'),
-        certPath: path.resolve(__dirname, './cert/certificate.pem.crt'),
-        caPath: path.resolve(__dirname, './cert/root-CA.crt'),
+    var thingShadows = awsIot.device({
+        keyPath: './cert/5734070db5-private.pem.key',
+        certPath: './cert/5734070db5-certificate.pem.crt',
+        caPath: './cert/CA1',
         clientId: 'kitiot',
         host: 'a28g4okfvsmwt-ats.iot.us-east-1.amazonaws.com',
         region: 'us-east-1',
         debug: true
     });
 
-// Client token value returned from thingShadows.update() operation
-//
-    var clientTokenUpdate;
-
-//
-// Simulated device values
-//
-    var rval = 187;
-    var gval = 114;
-    var bval = 222;
 
     thingShadows.on('connect', function() {
         console.log('Connected to AWS IoT');
-//
-// After connecting to the AWS IoT platform, register interest in the
-// Thing Shadow named 'RGBLedLamp'.
-//
-        thingShadows.register( 'Classic Shadow', {}, function() {
 
-// Once registration is complete, update the Thing Shadow named
-// 'RGBLedLamp' with the latest device state and save the clientToken
-// so that we can correlate it with status or timeout events.
-//
-// Thing shadow state
-//
-            var rgbLedLampState = {"state":{"desired":{"red":rval,"green":gval,"blue":bval}}};
 
-            clientTokenUpdate = thingShadows.update('RGBLedLamp', rgbLedLampState  );
-//
-// The update method returns a clientToken; if non-null, this value will
-// be sent in a 'status' event when the operation completes, allowing you
-// to know whether or not the update was successful.  If the update method
-// returns null, it's because another operation is currently in progress and
-// you'll need to wait until it completes (or times out) before updating the
-// shadow.
-//
-            if (clientTokenUpdate === null)
-            {
-                console.log('update shadow failed, operation still in progress');
-            }
-        });
+        thingShadows.publish('$aws/things/esp32_temp/shadow/update', 'Compra Aprovada'  );
+        // thingShadows.subscribe('$aws/things/esp32_temp/shadow/update');
+
+
+        // thingShadows.on('message', function(topic, payload) {
+        //     console.log('message', topic, payload.toString());
+        // });
+
+
     });
-    thingShadows.on('status',
-        function(thingName, stat, clientToken, stateObject) {
-            console.log('received '+stat+' on '+thingName+': '+
-                JSON.stringify(stateObject));
-//
-// These events report the status of update(), get(), and delete()
-// calls.  The clientToken value associated with the event will have
-// the same value which was returned in an earlier call to get(),
-// update(), or delete().  Use status events to keep track of the
-// status of shadow operations.
-//
-        });
-
-    thingShadows.on('delta',
-        function(thingName, stateObject) {
-            console.log('received delta on '+thingName+': '+
-                JSON.stringify(stateObject));
-        });
-
-    thingShadows.on('timeout',
-        function(thingName, clientToken) {
-            console.log('received timeout on '+thingName+
-                ' with token: '+ clientToken);
-//
-// In the event that a shadow operation times out, you'll receive
-// one of these events.  The clientToken value associated with the
-// event will have the same value which was returned in an earlier
-// call to get(), update(), or delete().
-//
-        });
 
     return { status: 'ok' }
 })
