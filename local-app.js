@@ -50,7 +50,7 @@ thingShadows.on('connect', function() {
 
 
         thingShadows.publish('$aws/things/esp32_temp/shadow/update', 'Compra Aprovada'  );
-        // thingShadows.subscribe('$aws/things/esp32_temp/shadow/update');
+        thingShadows.subscribe('$aws/things/esp32_temp/shadow/update');
 
 
     thingShadows.on('message', function(topic, payload) {
