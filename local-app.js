@@ -35,11 +35,11 @@ const port = 3000;
 // });
 
 var thingShadows = awsIot.device({
-    keyPath: './cert/5734070db5-private.pem.key',
-    certPath: './cert/5734070db5-certificate.pem.crt',
+    keyPath: './cert/coze-private.pem.key',
+    certPath: './cert/coze-certificate.pem',
     caPath: './cert/CA1',
     clientId: 'kitiot',
-    host: 'a28g4okfvsmwt-ats.iot.us-east-1.amazonaws.com',
+    host: 'a12sdpa3mvbfjt-ats.iot.us-west-2.amazonaws.com',
     region: 'us-east-1',
     debug: true
 });
@@ -48,9 +48,10 @@ var thingShadows = awsIot.device({
 thingShadows.on('connect', function() {
     console.log('Connected to AWS IoT');
 
+    // $aws/things/coze-2021-001/shadow/update
 
-        thingShadows.publish('$aws/things/esp32_temp/shadow/update', 'Compra Aprovada'  );
-        thingShadows.subscribe('$aws/things/esp32_temp/shadow/update');
+        thingShadows.publish('$aws/things/coze-2021-001/shadow/update', 'Compra Aprovada'  );
+        thingShadows.subscribe('$aws/things/coze-2021-001/shadow/update');
 
 
     thingShadows.on('message', function(topic, payload) {
